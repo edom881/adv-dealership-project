@@ -18,14 +18,26 @@ public class SalesContract extends Contract {
     public void setFinance(boolean finance) {
         this.finance = finance;
     }
-    @Override
-    public double getTotalPrice() {
-        return 0;
-    }
 
     @Override
-    public double getMonthlyPayment() {
-        return 0;
+    public double getTotalPrice() {
+
+        double price = vehicleSold.getPrice();
+
+        double salesTax = price * 0.05;
+
+        double recordingFee = 100;
+
+        double processingFee;
+
+        if (price < 10000) {
+            processingFee = 295;
+        } else {
+            processingFee = 495;
+        }
+
+        return price + salesTax + recordingFee + processingFee;
     }
 
 }
+
