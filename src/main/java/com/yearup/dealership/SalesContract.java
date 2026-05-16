@@ -38,6 +38,23 @@ public class SalesContract extends Contract {
 
         return price + salesTax + recordingFee + processingFee;
     }
+    @Override
+    public double getMonthlyPayment() {
 
+        if (!finance) {
+            return 0;
+        }
+
+        double totalPrice = getTotalPrice();
+        double monthlyPayment;
+
+        if (vehicleSold.getPrice() >= 10000) {
+            monthlyPayment = totalPrice * 0.0425 / 12;
+        } else {
+            monthlyPayment = totalPrice * 0.0525 / 24;
+        }
+
+        return monthlyPayment;
+    }
 }
 
