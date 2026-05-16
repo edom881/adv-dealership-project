@@ -1,6 +1,6 @@
 package com.yearup.dealership;
 
-public class Contract {
+public abstract class Contract {
     protected String date;
     protected String customerName;
     protected String customerEmail;
@@ -46,6 +46,11 @@ public class Contract {
 
     protected Vehicle vehicleSold;
 
+    public abstract double getTotalPrice();
+
+    public abstract double getMonthlyPayment();
+
 
     }
+
 
