@@ -56,5 +56,6 @@ public class SalesContract extends Contract {
 
         return monthlyPayment;
     }
+
 }
 
