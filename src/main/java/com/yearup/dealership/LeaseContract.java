@@ -8,4 +8,13 @@ public class LeaseContract extends Contract {
         super(date, customerName, customerEmail, vehicleSold);
     }
 
+    @Override
+    public double getTotalPrice() {
+        return 0;
+    }
+
+    @Override
+    public double getMonthlyPayment() {
+        return 0;
+    }
 }
