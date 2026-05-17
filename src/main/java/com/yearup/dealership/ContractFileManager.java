@@ -25,7 +25,20 @@ public class ContractFileManager {
                                 salesContract.getMonthlyPayment() + "\n"
                 );
             }
+            if (contract instanceof LeaseContract) {
 
+                LeaseContract leaseContract = (LeaseContract) contract;
+
+                writer.write(
+                        "LEASE|" +
+                                leaseContract.getDate() + "|" +
+                                leaseContract.getCustomerName() + "|" +
+                                leaseContract.getCustomerEmail() + "|" +
+                                leaseContract.getVehicleSold().toString() + "|" +
+                                leaseContract.getTotalPrice() + "|" +
+                                leaseContract.getMonthlyPayment() + "\n"
+                );
+            }
             writer.close();
 
         } catch (IOException e) {
