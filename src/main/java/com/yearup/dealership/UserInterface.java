@@ -24,6 +24,7 @@ public class UserInterface {
             System.out.println("7 - Find vehicles by type");
             System.out.println("8 - Add a vehicle");
             System.out.println("9 - Remove a vehicle");
+            System.out.println("10 - Sell or lease a vehicle");
             System.out.println("99 - Quit");
 
             System.out.print("Enter your choice: ");
@@ -60,6 +61,9 @@ public class UserInterface {
                     break;
                 case 9:
                     processRemoveVehicleRequest();
+                    break;
+                case 10:
+                    processSellLeaseVehicleRequest();
                     break;
 
 
@@ -213,5 +217,9 @@ public class UserInterface {
         } else {
             System.out.println("Vehicle not found.");
         }
+    }
+    private void processSellLeaseVehicleRequest() {
+
+        System.out.println("Sell/Lease feature coming next.");
     }
 }
