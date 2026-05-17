@@ -217,9 +217,65 @@ public class UserInterface {
         } else {
             System.out.println("Vehicle not found.");
         }
+
     }
     private void processSellLeaseVehicleRequest() {
 
-        System.out.println("Sell/Lease feature coming next.");
+        System.out.print("Enter VIN of vehicle: ");
+        int vin = scanner.nextInt();
+        scanner.nextLine();
+
+        Vehicle vehicleToSell = null;
+
+        for (Vehicle vehicle : dealership.getAllVehicles()) {
+            if (vehicle.getVin() == vin) {
+                vehicleToSell = vehicle;
+                break;
+            }
+        }
+
+        if (vehicleToSell == null) {
+            System.out.println("Vehicle not found.");
+            return;
+        }
+
+        System.out.print("Enter contract date YYYYMMDD: ");
+        String date = scanner.nextLine();
+
+        System.out.print("Enter customer name: ");
+        String customerName = scanner.nextLine();
+
+        System.out.print("Enter customer email: ");
+        String customerEmail = scanner.nextLine();
+
+        System.out.print("Is this a sale or lease? ");
+        String type = scanner.nextLine();
+
+        Contract contract;
+
+        if (type.equalsIgnoreCase("sale")) {
+
+            System.out.print("Finance? yes/no: ");
+            String financeAnswer = scanner.nextLine();
+
+            boolean finance = financeAnswer.equalsIgnoreCase("yes");
+
+            contract = new SalesContract(date, customerName, customerEmail, vehicleToSell, finance);
+
+        } else {
+
+            contract = new LeaseContract(date, customerName, customerEmail, vehicleToSell);
+        }
+
+        ContractFileManager contractFileManager = new ContractFileManager();
+        contractFileManager.saveContract(contract);
+
+        dealership.removeVehicle(vehicleToSell);
+
+        DealershipFileManager dealershipFileManager = new DealershipFileManager();
+        dealershipFileManager.saveDealership(dealership);
+
+        System.out.println("Contract saved and vehicle removed from inventory.");
     }
+
 }
