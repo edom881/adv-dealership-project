@@ -91,13 +91,15 @@ public class UserInterface {
         displayVehicles(dealership.getVehiclesByPrice(min, max));
     }
 
-
     private void init() {
 
         DealershipFileManager fileManager = new DealershipFileManager();
-        dealership = fileManager.getDealership();
-    }
+        this.dealership = fileManager.getDealership();
 
+        if (this.dealership == null) {
+            System.out.println("Inventory file did not load.");
+        }
+    }
     private void processAllVehiclesRequest() {
 
         displayVehicles(dealership.getAllVehicles());
